@@ -1,0 +1,16 @@
+﻿@model Sklep.Models.Product
+
+    <form asp-action="AddProduct">
+        <main>
+            <div class="left">
+                <input asp-for="Name" />
+                <textarea class="desc" asp-for="Descryption"></textarea>
+            </div>
+            <div class="right">
+                <h3>Ilość przedmiotów: <input asp-for="Number" /></h3>
+                <h3>Cena przedmiotu:</h3>
+                <input asp-for="Price" />
+                <input class="button" type="submit" value="Dodaj" />
+            </div>
+        </main>
+    </form>

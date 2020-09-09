@@ -1,0 +1,12 @@
+﻿     <div class="cart">
+        @foreach (var product in ViewBag.Products)
+        {
+            <div class="product">
+                <h2>@product.Name</h2>
+                <h3>Cena: @product.Price zł</h3>
+                <a class="button" asp-action="RemoveFromCart" asp-route-cartId="@product.CartId">Usuń</a>
+            </div>
+        }
+        <h3>Całkowity koszt zamówienia: @ViewBag.Sum zł</h3>
+        <a class="button" asp-action="AddOrder">Zamawiam</a>
+    </div>

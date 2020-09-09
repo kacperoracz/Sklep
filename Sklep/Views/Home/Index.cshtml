@@ -1,0 +1,17 @@
+﻿<div class="productsWrap">
+    @foreach (var product in ViewBag.Products)
+    {
+        <div class="product">
+            <div class="img"></div>
+            <div class="data">
+                <h3>@product.Name</h3>
+                <h4>Cena: <solid>@product.Price zł</solid></h4>
+                <a class="button" asp-action="ProductDetails" asp-route-productId="@product.Id">Szczegoly</a>
+                @if (User.IsInRole("admin"))
+                {
+                    <a class="button" asp-action="EditProduct" asp-route-productId="@product.Id">Edytuj</a>
+                }
+            </div>
+        </div>
+    }
+</div>

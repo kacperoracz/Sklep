@@ -1,0 +1,15 @@
+﻿@model Sklep.ViewModels.LoginVM
+
+    <div class="accountWrap">
+        <form asp-action="Login" asp-controller="Account" method="post">
+            <h2>Logowanie</h2>
+            <div class="data">
+                <h3>Login</h3>
+                <input asp-for="Login" />
+                <h3>Hasło</h3>
+                <input type="password" asp-for="Password" />
+                <input type="submit" class="button" value="Zaloguj">
+            </div>
+        </form>
+        <p>Jeśli nie masz jeszcze konta <a asp-controller="Account" asp-action="Register">zarejestruj się!</a></p>
+    </div>

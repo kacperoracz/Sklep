@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/style.css?4">
+</head>
+<body>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <header>
+            <h1>Sklep - Kacper Oracz</h1>
+            <div class="buttons">
+                <a class="button" asp-action="Index">Sklep</a>
+                @if (User.IsInRole("admin"))
+                {
+                    <a class="button" asp-action="AddProduct">Dodaj przedmiot</a>
+                }
+                @if (User.IsInRole("user"))
+                {
+                    <a class="button" asp-action="Cart">Koszyk</a>
+                }
+                <a class="button" asp-action="Order">Zamówienia</a>
+                <form asp-controller="Account" asp-action="Logout" method="post">
+                    <input class="button" type="submit" value="Wyloguj" />
+                </form>
+            </div>
+        </header>
+    }
+    @RenderBody()
+    <div class="errors active" asp-validation-summary="All"></div>
+    <script src="/js/errors.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿@model Sklep.Models.Rate
+
+<main>
+    <div class="left">
+        <h2>@ViewBag.Product.Name</h2>
+        <p class="desc">@ViewBag.Product.Descryption</p>
+    </div>
+    <div class="right">
+        <h3>Ilość przedmiotów: @ViewBag.Product.Number</h3>
+        <h3>Cena przedmiotu:</h3>
+        <h3>@ViewBag.Product.Price zł</h3>
+        <h4>
+            Ocena przedmiotu:
+            @if (@ViewBag.Rating > 0)
+            {
+                @ViewBag.Rating }
+            else
+            {
+                <p>Brak ocen przedmiotu</p>
+            }
+        </h4>
+        @if (User.IsInRole("user"))
+        {
+            <div class="rate">
+                <h4>Oceń przedmiot!</h4>
+                <form asp-action="AddRate">
+                    <select asp-for="Value">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input class="button" type="submit" value="Oceń!">
+                    <input type="hidden" asp-for="ProductId" value=@ViewBag.Product.Id />
+                </form>
+            </div>
+            <a class="button" asp-action="AddToCart" asp-route-productIdF="@ViewBag.Product.Id">Dodaj do koszyka</a>
+        }
+    </div>
+</main>

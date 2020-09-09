@@ -1,0 +1,35 @@
+﻿ @model Sklep.ViewModels.OrderStatusVM
+   <div class="order">
+        @foreach (var order in ViewBag.Orders)
+        {
+       <div class="product">
+           @if (User.IsInRole("admin"))
+           {
+               <h2>@order.UserName</h2>
+           }
+           <h2>@order.Name</h2>
+           <h3>Cena: @order.Price zł</h3>
+           <h3>Status zamówienia: @order.Status</h3>
+           @if (User.IsInRole("admin"))
+           {
+       <form asp-action="ChangeOrderStatus">
+           <input type="hidden" asp-for="OrderId" value="@order.OrderId" />
+           @if (order.Status == "Anulowane" || order.Status == "Dostarczone")
+           {
+           }
+           else
+           {
+               <h3>Zmień status zamówienia na </h3>
+               <select asp-for="StatusId">
+                   @foreach (var status in ViewBag.Statuses)
+                   {
+                       <option value="@status.Id">@status.Name</option>
+                   }
+               </select>
+               <input class="button" type="submit" value="Zmień" />
+           }
+       </form>
+           }
+       </div>
+        }
+    </div>
